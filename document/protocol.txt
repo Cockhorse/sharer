@@ -1,0 +1,102 @@
+协议头           
+0x47466a73
+
+命令字段
+keepalive          0x0000
+ 
+peerlistreq        0x2023
+peerlistres        0x2024
+                        
+handshakereq       0x3031
+handshakeres       0x3032
+
+datareq            0x3035
+datares            0x3036
+
+数据包：协议头+长度+包序号+命令字段+校验和
+其他包：协议头+长度+包序号+命令字段
+keepalive 
+0x47466a73
+0xffffffff
+0x00000000
+0x0000
+
+peerlistreq
+0x47466a73
+0xffffffff
+0x00000000
+0x2023
+0x00000000000000000000000000    infohash
+
+peerlistres
+0x47466a73
+0xffffffff
+0x00000000
+0x2024
+0x00000000000000000000000000    infohash
+0x01                            peers_count
+0x00000000                      peerid
+0x12345678                      outer_ip
+0x9101                          outer_port
+
+handshakereq
+0x47466a73
+0xffffffff
+0x00000000
+0x3031
+0x00000000000000000000000000    infohash
+
+handshakeres
+0x47466a73
+0xffffffff
+0x00000000
+0x3032
+0x00000000000000000000000000    infohash
+0x12345678                      filesize
+0x0000                          bitsize
+0x00000000...                   bitmap (block/bit)
+
+datareq
+0x47466a73
+0xffffffff
+0x00000000
+0x3031
+0x00000000000000000000000000    infohash
+0x01                            req_count
+0x00000000                      block_index  block = 2*1024*piece
+0x0000                          piece_index (range:0-0x7ff)   piece = 1024byte
+
+datares
+0x47466a73
+0xffffffff
+0x00000000
+0x3031
+0x00000000000000000000000000    infohash
+0x00000000                      block_index  block = 2*1024*piece
+0x0000                          piece_index (range:0-0x7ff)   piece = 1024byte
+0x00000000                      checksum
+0x0000                          datasize
+0x00000000...                   data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+struct sharer 
+{
+	uint32_t  proto
+	uint32_t  packet_seq
+	uint32_t  packet_len
+}
+
+struct handshakereq
+{
+	sharer    proto_head
+	uint16_t  cmd
+        uchar[16] infohash
+}
+
+struct handshakeres
+{
+	sharer      proto_head
+	uint16_t    cmd
+        uchar[16]   infohash
+	uint32_t    filesize
+	uint16_t    bitsize
+	uchar[0]    bitmap
+}
+
+
+
+handshakereq
+0x47466a73
+0xffffffff
+0x00000000
+0x3031
+0x00000000000000000000000000    infohash
+
+handshakeres
+0x47466a73
+0xffffffff
+0x00000000
+0x3032
+0x00000000000000000000000000    infohash
+0x12345678                      filesize
+0x0000                          bitsize
+0x00000000...                   bitmap (block/bit)

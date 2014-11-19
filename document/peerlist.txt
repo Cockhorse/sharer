@@ -1,0 +1,48 @@
+struct sharer 
+{
+	uint32_t  proto
+	uint32_t  packet_seq
+	uint32_t  packet_len
+}
+
+struct peeraddr
+{
+	uint32_t    peerid
+	uint32_t    peer_ip
+	uint16_t    peer_port
+}
+
+struct peerlistreq
+{
+	sharer    proto_head
+	uint16_t  cmd
+        uchar[16] infohash
+}
+
+struct peerlistres
+{
+	sharer      proto_head
+	uint16_t    cmd
+        uchar[16]   infohash
+	uchar	    peers_count
+	peeraddr[0] peers
+}
+
+
+peerlistreq
+0x47466a73
+0xffffffff
+0x00000000
+0x2023
+0x00000000000000000000000000    infohash
+
+peerlistres
+0x47466a73
+0xffffffff
+0x00000000
+0x2024
+0x00000000000000000000000000    infohash
+0x01                            peers_count
+0x00000000                      peerid
+0x12345678                      outer_ip
+0x9101                          outer_port

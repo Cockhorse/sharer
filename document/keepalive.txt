@@ -1,0 +1,18 @@
+struct sharer 
+{
+	uint32_t  proto
+	uint32_t  packet_seq
+	uint32_t  packet_len
+}
+
+struct keepalive 
+{
+	sharer    proto_head
+	uint16_t  cmd
+}
+
+keepalive 
+0x47466a73
+0xffffffff
+0x00000000
+0x0000

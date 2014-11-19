@@ -1,0 +1,61 @@
+struct sharer 
+{
+	uint32_t  proto
+	uint32_t  packet_seq
+	uint32_t  packet_len
+}
+
+struct datareq
+{
+	sharer    proto_head
+	uint16_t  cmd
+        uchar[16] infohash
+        uchar     req_cnt
+	uint32_t  block_index
+	uint16_t  piece_index
+}
+
+struct datares
+{
+	sharer      proto_head
+	uint16_t    cmd
+        uchar[16]   infohash
+	uint32_t    block_index
+	uint16_t    piece_index
+	uint32_t    checksum
+	uint16_t    datasize
+	uchar[1024] data
+}
+
+
+
+datareq
+0x47466a73
+0xffffffff
+0x00000000
+0x3031
+0x00000000000000000000000000    infohash
+0x01                            req_count
+0x00000000                      block_index  block = 2*1024*piece
+0x0000                          piece_index (range:0-0x7ff)   piece = 1024byte
+
+datares
+0x47466a73
+0xffffffff
+0x00000000
+0x3031
+0x00000000000000000000000000    infohash
+0x00000000                      block_index  block = 2*1024*piece
+0x0000                          piece_index (range:0-0x7ff)   piece = 1024byte
+0x00000000                      checksum
+0x0000                          datasize
+0x00000000...                   data
+
+
+
+
+
+
+
+
+
